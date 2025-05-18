@@ -17,3 +17,7 @@ export type UserEntity = {
 export type SelectedUser = Selectable<UserEntity>;
 export type NewUserInput = Insertable<UserEntity>;
 export type UserUpdateInput = Updateable<UserEntity>;
+
+export function isStatusValid(status: string): status is UserStatus {
+  return status === UserStatus.Active || status === UserStatus.Inactive;
+}

@@ -10,7 +10,6 @@ export class User {
     this.id = '';
     this.name = '';
     this.email = '';
-    this.status = UserStatus.Inactive;
   }
 
   setName(name: string) {
@@ -28,9 +27,9 @@ export class User {
     return this;
   }
 
-  setStatus(status: string) {
-    if (!isStatusValid(status)) throw new Error('user status is invalid');
-    this.status = status;
+  setStatus(statusInput: string) {
+    if (!isStatusValid(statusInput)) throw new Error('user status is invalid');
+    this.status = statusInput;
     return this;
   }
 }

@@ -1,6 +1,5 @@
 import {
   DynamicModule,
-  InternalServerErrorException,
   Module,
 } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -47,6 +46,7 @@ export class UserInfrasturcture {
       provide: UserPersistenceAPI,
       useClass: TypeormUserRepository,
     };
+
     return {
       module: UserInfrasturcture,
       imports: [TypeOrmModule.forFeature([UserEntity])],

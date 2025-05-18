@@ -3,10 +3,7 @@ import { CreateUserApplication } from './create-user/create-user.application';
 import { UserInfrasturcture } from '../infrastructures/postgres/user-infrastructure.module';
 import { UserModuleConfig } from '../config.type';
 
-@Module({
-  providers: [CreateUserApplication],
-  exports: [CreateUserApplication],
-})
+@Module({})
 export class UserApplicationModule {
   static withInfrastructure(
     type: UserModuleConfig['infrastructureType'],
@@ -14,6 +11,8 @@ export class UserApplicationModule {
     return {
       module: UserApplicationModule,
       imports: [UserInfrasturcture.withInfrastucture(type)],
+      providers: [CreateUserApplication],
+      exports: [CreateUserApplication],
     };
   }
 }

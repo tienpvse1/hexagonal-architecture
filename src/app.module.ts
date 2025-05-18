@@ -12,7 +12,6 @@ import { APP_PIPE } from '@nestjs/core';
       useValue: new ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,
-        skipUndefinedProperties: true,
       }),
     },
   ],
