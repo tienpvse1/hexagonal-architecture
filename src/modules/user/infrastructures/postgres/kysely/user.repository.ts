@@ -1,6 +1,6 @@
 import { Mapper } from 'src/common/mapper.interface';
 import { User } from 'src/modules/user/cores/user.entity';
-import { UserPersistence } from 'src/modules/user/ports/outbound';
+import { UserPersistenceAPI } from 'src/modules/user/ports/outbound';
 import {
   Inject,
   Injectable,
@@ -12,7 +12,7 @@ import { SelectedUser } from './entity';
 import { Kysely } from 'kysely';
 
 @Injectable()
-export class KyselyUserRepository implements UserPersistence {
+export class KyselyUserRepository implements UserPersistenceAPI {
   constructor(
     @Inject(KyselyInstance) private kysely: Kysely<Database>,
     private mapper: Mapper<User, SelectedUser>,

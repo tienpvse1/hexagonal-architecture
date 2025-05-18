@@ -6,7 +6,7 @@ import {
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Mapper } from 'src/common/mapper.interface';
 import { UserModuleConfig } from 'src/modules/user/config.type';
-import { UserPersistence } from 'src/modules/user/ports/outbound';
+import { UserPersistenceAPI } from 'src/modules/user/ports/outbound';
 import { TypeormUserRepository } from './typeorm/user.repository';
 import { UserEntity } from './typeorm/entity';
 import { TypeormUserMapper } from './typeorm/mapper';
@@ -26,7 +26,7 @@ export class UserInfrasturcture {
   ): DynamicModule {
     if (infrastructureType === 'kysely') {
       const kyselyProvider = {
-        provide: UserPersistence,
+        provide: UserPersistenceAPI,
         useClass: KyselyUserRepository,
       };
       return {
@@ -44,7 +44,7 @@ export class UserInfrasturcture {
     }
 
     const typeormProvider = {
-      provide: UserPersistence,
+      provide: UserPersistenceAPI,
       useClass: TypeormUserRepository,
     };
     return {

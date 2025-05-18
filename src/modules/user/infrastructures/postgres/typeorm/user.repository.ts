@@ -1,13 +1,13 @@
 import { Mapper } from 'src/common/mapper.interface';
 import { User } from 'src/modules/user/cores/user.entity';
-import { UserPersistence } from 'src/modules/user/ports/outbound';
+import { UserPersistenceAPI } from 'src/modules/user/ports/outbound';
 import { UserEntity } from './entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
-export class TypeormUserRepository implements UserPersistence {
+export class TypeormUserRepository implements UserPersistenceAPI {
   constructor(
     @InjectRepository(UserEntity) private userRepo: Repository<UserEntity>,
     private mapper: Mapper<User, UserEntity>,

@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { UserPersistence } from '../../ports/outbound';
+import { UserPersistenceAPI } from '../../ports/outbound';
 import { CreateUserCmd } from './create-user.cmd';
 import { User } from '../../cores/user.entity';
 
 @Injectable()
 export class CreateUserApplication {
-  constructor(private persistenceApi: UserPersistence) {}
+  constructor(private persistenceApi: UserPersistenceAPI) {}
 
   execute(cmd: CreateUserCmd) {
     const user = new User();
