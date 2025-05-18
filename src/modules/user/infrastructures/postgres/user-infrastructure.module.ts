@@ -1,7 +1,7 @@
 import { type DynamicModule, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Mapper } from 'src/common/mapper.interface';
-import type { UserModuleConfig } from 'src/modules/user/config.type';
+import { UserModuleConfig } from 'src/modules/user/config.type';
 import { UserPersistenceAPI } from 'src/modules/user/ports/outbound';
 import { TypeormUserRepository } from './typeorm/user.repository';
 import { UserEntity } from './typeorm/entity';

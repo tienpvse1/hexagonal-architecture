@@ -1,7 +1,7 @@
 import { type DynamicModule, Module, ValidationPipe } from '@nestjs/common';
 import { UserModule } from './modules/user/user.module';
 import 'dotenv/config';
-import type { AppConfig } from './app.config';
+import { AppConfig } from './app.config';
 import { DbModule } from './common/db.module';
 import { APP_PIPE } from '@nestjs/core';
 

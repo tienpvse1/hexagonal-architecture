@@ -1,7 +1,7 @@
 import { type DynamicModule, Module } from '@nestjs/common';
 import { Kysely, PostgresDialect } from 'kysely';
 import { Pool } from 'pg';
-import type { UserEntity } from 'src/modules/user/infrastructures/postgres/kysely/entity';
+import { UserEntity } from 'src/modules/user/infrastructures/postgres/kysely/entity';
 import 'dotenv/config';
 
 export interface Database {

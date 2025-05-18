@@ -1,15 +1,15 @@
-import type { Mapper } from 'src/common/mapper.interface';
-import type { User } from 'src/modules/user/cores/user.entity';
-import type { UserPersistenceAPI } from 'src/modules/user/ports/outbound';
+import { Mapper } from 'src/common/mapper.interface';
+import { User } from 'src/modules/user/cores/user.entity';
+import { UserPersistenceAPI } from 'src/modules/user/ports/outbound';
 import {
 	Inject,
 	Injectable,
 	InternalServerErrorException,
 	Logger,
 } from '@nestjs/common';
-import { type Database, KyselyInstance } from 'src/common/db-providers/kysely';
-import type { SelectedUser } from './entity';
-import type { Kysely } from 'kysely';
+import { Database, KyselyInstance } from 'src/common/db-providers/kysely';
+import { SelectedUser } from './entity';
+import { Kysely } from 'kysely';
 
 @Injectable()
 export class KyselyUserRepository implements UserPersistenceAPI {

@@ -9,7 +9,7 @@ import { createMock } from '@golevelup/ts-vitest';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserStatus } from 'src/modules/user/cores/user-status';
 
-import type { Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 describe('Typeorm user repository', () => {
 	let mapper: Mapper<User, UserEntity>;

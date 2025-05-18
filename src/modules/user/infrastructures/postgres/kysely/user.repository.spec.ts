@@ -1,13 +1,13 @@
 import { Mapper } from 'src/common/mapper.interface';
 import { User } from 'src/modules/user/cores/user.entity';
-import type { SelectedUser } from './entity';
+import { SelectedUser } from './entity';
 import { KyselyUserRepository } from './user.repository';
 import { Test } from '@nestjs/testing';
 import { UserPersistenceAPI } from 'src/modules/user/ports/outbound';
 import { createMock } from '@golevelup/ts-vitest';
 import { vi } from 'vitest';
-import type { Kysely } from 'kysely';
-import { type Database, KyselyInstance } from 'src/common/db-providers/kysely';
+import { Kysely } from 'kysely';
+import { Database, KyselyInstance } from 'src/common/db-providers/kysely';
 
 describe('Kysely User repository', () => {
 	let mapper: Mapper<User, SelectedUser>;

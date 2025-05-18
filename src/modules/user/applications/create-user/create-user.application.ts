@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import type { UserPersistenceAPI } from '../../ports/outbound';
-import type { CreateUserCmd } from './create-user.cmd';
+import { UserPersistenceAPI } from '../../ports/outbound';
+import { CreateUserCmd } from './create-user.cmd';
 import { User } from '../../cores/user.entity';
 
 @Injectable()

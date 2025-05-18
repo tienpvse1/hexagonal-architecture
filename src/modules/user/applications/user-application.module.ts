@@ -1,7 +1,7 @@
-import { type DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { CreateUserApplication } from './create-user/create-user.application';
 import { UserInfrasturcture } from '../infrastructures/postgres/user-infrastructure.module';
-import type { UserModuleConfig } from '../config.type';
+import { UserModuleConfig } from '../config.type';
 
 @Module({})
 export class UserApplicationModule {

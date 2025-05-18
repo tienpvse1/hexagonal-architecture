@@ -1,7 +1,7 @@
-import type { AppConfig } from 'src/app.config';
+import { AppConfig } from 'src/app.config';
 import { KyselyModule } from './db-providers/kysely';
 import typeorm from './db-providers/typeorm';
-import type { DynamicModule } from '@nestjs/common';
+import { DynamicModule } from '@nestjs/common';
 
 export class DbModule {
 	static forRoot(client: AppConfig['dbClient']): DynamicModule {

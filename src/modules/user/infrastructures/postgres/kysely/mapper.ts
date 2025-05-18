@@ -1,6 +1,6 @@
 import { User } from 'src/modules/user/cores/user.entity';
 import { Mapper } from 'src/common/mapper.interface';
-import type { SelectedUser } from './entity';
+import { SelectedUser } from './entity';
 import { isStatusValid } from 'src/modules/user/cores/user-status';
 
 export class KyselyUserMapper extends Mapper<User, SelectedUser> {
