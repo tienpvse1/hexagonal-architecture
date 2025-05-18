@@ -1,11 +1,33 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { DynamicModule, Module, ValidationPipe } from '@nestjs/common';
 import { UserModule } from './modules/user/user.module';
+import 'dotenv/config';
+import { AppConfig } from './app.config';
+import { DbModule } from './common/db.module';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
-  imports: [UserModule],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        skipUndefinedProperties: true,
+      }),
+    },
+  ],
 })
-export class AppModule {}
+export class AppModule {
+  static use(config: AppConfig): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        DbModule.forRoot(config.dbClient),
+        UserModule.use({
+          enableRest: config.enableRestAPI,
+          infrastructureType: config.dbClient,
+        }),
+      ],
+    };
+  }
+}
