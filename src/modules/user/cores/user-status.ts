@@ -1,8 +1,8 @@
 export enum UserStatus {
-  Inactive = 'inactive',
-  Active = 'active',
+	Inactive = 'inactive',
+	Active = 'active',
 }
 
 export function isStatusValid(status: string): status is UserStatus {
-  return status === UserStatus.Inactive || status === UserStatus.Active;
+	return status === UserStatus.Inactive || status === UserStatus.Active;
 }

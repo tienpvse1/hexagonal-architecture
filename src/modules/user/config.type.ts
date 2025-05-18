@@ -1,4 +1,4 @@
 export type UserModuleConfig = {
-  enableRest: boolean;
-  infrastructureType: 'typeorm' | 'kysely';
+	enableRest: boolean;
+	infrastructureType: 'typeorm' | 'kysely';
 };

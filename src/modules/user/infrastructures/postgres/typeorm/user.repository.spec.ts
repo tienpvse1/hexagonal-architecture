@@ -9,60 +9,60 @@ import { createMock } from '@golevelup/ts-vitest';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserStatus } from 'src/modules/user/cores/user-status';
 
-import { Repository } from 'typeorm';
+import type { Repository } from 'typeorm';
 
 describe('Typeorm user repository', () => {
-  let mapper: Mapper<User, UserEntity>;
-  let persistenceApi: UserPersistenceAPI;
-  let userRepo: Repository<UserEntity>;
+	let mapper: Mapper<User, UserEntity>;
+	let persistenceApi: UserPersistenceAPI;
+	let userRepo: Repository<UserEntity>;
 
-  beforeEach(async () => {
-    const module = await Test.createTestingModule({
-      providers: [
-        {
-          provide: UserPersistenceAPI,
-          useClass: TypeormUserRepository,
-        },
-        {
-          provide: getRepositoryToken(UserEntity),
-          useValue: createMock(),
-        },
-      ],
-    })
-      .useMocker(createMock)
-      .compile();
+	beforeEach(async () => {
+		const module = await Test.createTestingModule({
+			providers: [
+				{
+					provide: UserPersistenceAPI,
+					useClass: TypeormUserRepository,
+				},
+				{
+					provide: getRepositoryToken(UserEntity),
+					useValue: createMock(),
+				},
+			],
+		})
+			.useMocker(createMock)
+			.compile();
 
-    mapper = module.get(Mapper);
-    persistenceApi = module.get(UserPersistenceAPI);
-    userRepo = module.get(getRepositoryToken(UserEntity));
-  });
+		mapper = module.get(Mapper);
+		persistenceApi = module.get(UserPersistenceAPI);
+		userRepo = module.get(getRepositoryToken(UserEntity));
+	});
 
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
+	afterEach(() => {
+		vi.clearAllMocks();
+	});
 
-  describe('create user', () => {
-    it('Should inject correct repository', () => {
-      expect(persistenceApi).toBeInstanceOf(TypeormUserRepository);
-    });
+	describe('create user', () => {
+		it('Should inject correct repository', () => {
+			expect(persistenceApi).toBeInstanceOf(TypeormUserRepository);
+		});
 
-    it('Should call save with correct input', async () => {
-      const user = new User();
-      user.setId('some-id');
-      user.setName('name');
-      user.setEmail('test@example.com');
-      user.setStatus(UserStatus.Active);
+		it('Should call save with correct input', async () => {
+			const user = new User();
+			user.setId('some-id');
+			user.setName('name');
+			user.setEmail('test@example.com');
+			user.setStatus(UserStatus.Active);
 
-      await persistenceApi.create(user);
+			await persistenceApi.create(user);
 
-      // called parameter must not contains `id`
-      expect(userRepo.save).toHaveBeenCalledWith({
-        name: 'name',
-        email: 'test@example.com',
-        status: UserStatus.Active,
-      });
+			// called parameter must not contains `id`
+			expect(userRepo.save).toHaveBeenCalledWith({
+				name: 'name',
+				email: 'test@example.com',
+				status: UserStatus.Active,
+			});
 
-      expect(mapper.toModel).toHaveBeenCalled();
-    });
-  });
+			expect(mapper.toModel).toHaveBeenCalled();
+		});
+	});
 });
